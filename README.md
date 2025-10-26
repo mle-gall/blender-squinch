@@ -56,12 +56,16 @@ From source:
 
 ## Quick Start
 
+https://github.com/user-attachments/assets/96112fce-1229-4020-bb03-856d57471570
+
 1) Add a mesh plane (your projection surface)  
 2) Create/animate a camera (keyframes, Follow Path, etc.)  
 3) Open the Squinch panel → select the plane and camera  
 4) Click “Setup Squinch Scene”
 
 The camera will now keep the plane perfectly framed while it moves.
+
+https://github.com/user-attachments/assets/430827f0-8736-4e83-902f-b5e7094d9f1e
 
 ## Use cases
 
@@ -70,7 +74,7 @@ The camera will now keep the plane perfectly framed while it moves.
 - Architectural and set design where a moving viewpoint must see a screen correctly
 - Any scene where a flat projection surface must remain perfectly framed during motion
 
-## How it works (short)
+## How it works
 
 - Creates 4 corner empties on the plane and an orientation helper empty aligned to the plane’s normal (flipped to face the camera)  
 - Adds a Copy Rotation constraint from the orientation helper to the camera  
