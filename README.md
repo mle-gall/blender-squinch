@@ -58,7 +58,7 @@ From source:
 
 ## Quick Start
 
-https://github.com/user-attachments/assets/96112fce-1229-4020-bb03-856d57471570
+https://github.com/user-attachments/assets/cbd3c6af-ceb3-4a87-9fc7-dd1cf0378379
 
 1) Add a mesh plane (your projection surface)  
 2) Create/animate a camera (keyframes, Follow Path, etc.)  
