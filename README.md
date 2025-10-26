@@ -2,6 +2,8 @@
 
 A small Blender add-on that keeps a chosen projection plane perfectly framed by an animated camera using drivers for focal length and lens shift. It is orientation-agnostic and works with cameras on paths/constraints. No image warping is performed – this targets flat screens only.
 
+https://github.com/user-attachments/assets/430827f0-8736-4e83-902f-b5e7094d9f1e
+
 ## What is “squinching” (in practice here)?
 
 When a camera/viewer moves relative to a flat screen, the screen appears skewed and off-center unless the camera’s field-of-view and optical center are adjusted every frame. This add-on:
@@ -66,8 +68,6 @@ https://github.com/user-attachments/assets/cbd3c6af-ceb3-4a87-9fc7-dd1cf0378379
 4) Click “Setup Squinch Scene”
 
 The camera will now keep the plane perfectly framed while it moves.
-
-https://github.com/user-attachments/assets/430827f0-8736-4e83-902f-b5e7094d9f1e
 
 ## Use cases
 
