@@ -213,7 +213,7 @@ def ensure_orientation_empty(plane: bpy.types.Object, camera: bpy.types.Object, 
 def set_render_aspect_to_plane(scene: bpy.types.Scene, plane: bpy.types.Object) -> None:
     width, height = width_height_from_corners(plane)
     if width <= 0.0 or height <= 0.0:
-        return
+            return
     aspect = width / height
     # Keep current X (rounded to even), adjust Y to match aspect (also even)
     res_x = max(2, int(scene.render.resolution_x))
@@ -319,7 +319,7 @@ def _calculate_squinch_data():
 def squinch_horizontal_fov() -> float:
     data = _calculate_squinch_data()
     if data is None or abs(data['width_u']) <= 1e-9:
-        return 35.0
+                return 35.0
     focal = data['sensor_width'] / data['width_u']
     return max(1.0, float(focal))
 
@@ -491,7 +491,7 @@ def setup_camera_drivers(scene: bpy.types.Scene, camera: bpy.types.Object, plane
 
 
 def clear_camera_drivers(scene: bpy.types.Scene, camera: bpy.types.Object) -> None:
-    cam_data = camera.data
+        cam_data = camera.data
     if cam_data.animation_data and cam_data.animation_data.drivers:
         for fcu in list(cam_data.animation_data.drivers):
             if fcu.data_path in {'lens', 'shift_x', 'shift_y'}:
@@ -512,7 +512,6 @@ def clear_camera_drivers(scene: bpy.types.Scene, camera: bpy.types.Object) -> No
 
 
 def scene_pointer_properties():
-    scene = get_scene()
     if not hasattr(bpy.types.Scene, 'squinch_plane'):
         bpy.types.Scene.squinch_plane = bpy.props.PointerProperty(
             name="Projection Plane",
@@ -536,7 +535,7 @@ class SQUINCH_OT_setup(bpy.types.Operator):
     bl_idname = "squinch.setup"
     bl_label = "Setup Squinch Scene"
     bl_options = {'REGISTER', 'UNDO'}
-
+    
     def execute(self, context):
         scene = context.scene
         plane = scene.squinch_plane
@@ -548,7 +547,7 @@ class SQUINCH_OT_setup(bpy.types.Operator):
         if camera is None or camera.type != 'CAMERA':
             self.report({'ERROR'}, "Select a Camera to drive")
             return {'CANCELLED'}
-
+        
         # Create empties and orientation helper in the active collection
         collection = context.view_layer.active_layer_collection.collection
 
@@ -577,7 +576,7 @@ class SQUINCH_OT_clear(bpy.types.Operator):
     bl_idname = "squinch.clear"
     bl_label = "Clear Squinch Setup"
     bl_options = {'REGISTER', 'UNDO'}
-
+    
     def execute(self, context):
         scene = context.scene
         plane = scene.squinch_plane
@@ -616,7 +615,7 @@ class SQUINCH_PT_panel(bpy.types.Panel):
     bl_region_type = 'UI'
     bl_category = 'Squinch'
     bl_label = 'Squinched Media'
-
+    
     def draw(self, context):
         layout = self.layout
         scene = context.scene

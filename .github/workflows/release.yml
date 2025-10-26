@@ -29,11 +29,13 @@ jobs:
       - name: Create addon package
         run: |
           mkdir -p build
-          cp blender-squinch.py build/
-          cp README.md build/
-          cp ref.py build/ 2>/dev/null || true
+          # IMPORTANT: For Blender addon installation, the .py file must be at the ROOT of the zip
+          # Copy to build directory and create zip from within (no subdirectory)
+          cp blender-squinch.py build/blender-squinch.py
           cd build
-          zip -r blender-squinch-${{ steps.get_version.outputs.VERSION }}.zip blender-squinch.py README.md ref.py 2>/dev/null || zip -r blender-squinch-${{ steps.get_version.outputs.VERSION }}.zip blender-squinch.py README.md
+          zip blender-squinch-${{ steps.get_version.outputs.VERSION }}.zip blender-squinch.py
+          # Verify structure (file should be at root, not in subdirectory)
+          unzip -l blender-squinch-${{ steps.get_version.outputs.VERSION }}.zip
           cd ..
       
       - name: Create Release

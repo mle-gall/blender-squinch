@@ -50,9 +50,11 @@ From Releases (recommended):
 
 From source:
 1) Edit → Preferences → Add-ons → Install…  
-2) Select `Blender-quinch.py`  
-3) Enable “Render: Squinched Media Setup”  
-4) Panel appears in the 3D Viewport sidebar (N) under “Squinch”
+2) Select `blender-squinch.py`  
+3) Enable "Render: Squinched Media Setup"  
+4) Panel appears in the 3D Viewport sidebar (N) under "Squinch"
+
+**Note:** The release `.zip` contains only `blender-squinch.py` (~22KB) - this is all Blender needs to install the addon. Documentation is on GitHub.
 
 ## Quick Start
 
