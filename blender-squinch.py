@@ -491,7 +491,7 @@ def setup_camera_drivers(scene: bpy.types.Scene, camera: bpy.types.Object, plane
 
 
 def clear_camera_drivers(scene: bpy.types.Scene, camera: bpy.types.Object) -> None:
-        cam_data = camera.data
+    cam_data = camera.data
     if cam_data.animation_data and cam_data.animation_data.drivers:
         for fcu in list(cam_data.animation_data.drivers):
             if fcu.data_path in {'lens', 'shift_x', 'shift_y'}:
