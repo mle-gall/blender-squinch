@@ -1,0 +1,53 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Get version from tag
+        id: get_version
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          else
+            echo "VERSION=dev-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Create addon package
+        run: |
+          mkdir -p build
+          cp blender-squinch.py build/
+          cp README.md build/
+          cp ref.py build/ 2>/dev/null || true
+          cd build
+          zip -r blender-squinch-${{ steps.get_version.outputs.VERSION }}.zip blender-squinch.py README.md ref.py 2>/dev/null || zip -r blender-squinch-${{ steps.get_version.outputs.VERSION }}.zip blender-squinch.py README.md
+          cd ..
+      
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/blender-squinch-*.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Upload artifact (manual workflow)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: blender-squinch-${{ steps.get_version.outputs.VERSION }}
+          path: build/blender-squinch-*.zip
+
